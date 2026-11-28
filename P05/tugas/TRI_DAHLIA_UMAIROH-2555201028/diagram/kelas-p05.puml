@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Alamat
+class Penyewa {
+  - nama
+  - nik
+  - alamat
+  + identitas()
+}
+
+class AlatTani {
+  - kode
+  - nama
+  - tarif_harian
+}
+
+class BarisSewa {
+  - alat
+  - jumlah_hari
+  - kode_alat
+  - nama_alat
+  - tarif_saat_sewa
+  + subtotal()
+  + baris_nota()
+}
+
+class Sewa {
+  - nomor
+  - penyewa
+  - baris
+  + tambah_alat()
+  + jumlah_alat()
+  + total()
+  + nota()
+}
+
+Penyewa "1" *-- "1" Alamat
+Sewa "0..*" --> "1" Penyewa
+Sewa "1" *-- "1..10" BarisSewa
+BarisSewa "0..*" o-- "1" AlatTani
+
+@enduml
